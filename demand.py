@@ -61,3 +61,21 @@ def get_priorities():
         ),
         reverse=True
     )
+
+def get_ai_context():
+    summary = get_demand_summary()
+    priorities = get_priorities()
+
+    context = {
+        "demand_summary": summary,
+        "priority_ranking": [
+            {
+                "rank": rank,
+                "location": location,
+                **data
+            }
+            for rank, (location, data) in enumerate(priorities, start=1)
+        ]
+    }
+
+    return context

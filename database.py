@@ -44,3 +44,12 @@ def add_request(pickup, destination, passengers):
 
     connection.commit()
     connection.close()
+
+def reset_demo_data():
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("DELETE FROM requests")
+
+    connection.commit()
+    connection.close()
